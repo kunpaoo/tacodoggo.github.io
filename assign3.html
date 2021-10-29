@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>Assignments</title>
+
+        <link rel="stylesheet" href="styles.css">
+        
+        
+
+    </head>
+
+    <body>
+        <div style="margin:auto;padding-top:50px;width:500px;">
+        <div style="float:left;">
+        <div class="content" style="width:350px;">
+            <b>Nth Factorial, Sum, and Average</b><br/>
+            <label for="num">Enter number: </label>
+            <input id="num" name="num" type="number">
+            <button onclick="calc()">Calculate</button><br/><br/>
+
+            Factorial: <p id="factorial"></p><br/>
+            Sum: <p id="sum"></p><br/>
+            Average: <p id="average"></p>
+        </div>
+        </div>
+        <div style="float:left;">
+        <button id="home" onclick="location.href='index.html'">❯❯</button>
+        </div>
+        </div>
+        
+        
+        <script>
+            function calc(){
+                var n = document.getElementById("num").value*1;
+                var fact=1, sum=0, avg;
+                var x=1;
+                while(x<=n){
+                    fact=fact*x;
+                    x++;
+                }
+                                
+                x=1;
+                do{
+                    sum+=x;
+                    x++;
+                }
+                while(x<=n)
+                
+                var temp=0;
+                for(x=1;x<=n;x++){
+                    temp+=x;
+                }
+                avg=temp/n;
+
+                document.getElementById("factorial").innerHTML=fact;
+                document.getElementById("sum").innerHTML=sum;
+                document.getElementById("average").innerHTML=avg;
+
+            }
+           
+        </script>
+        
+    </body>
+
+</html>

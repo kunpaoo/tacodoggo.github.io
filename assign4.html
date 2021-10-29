@@ -1,0 +1,107 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>Assignments</title>
+
+        <link rel="stylesheet" href="styles.css">
+        
+        
+
+    </head>
+
+    <body>
+        <div style="margin:auto;padding-top:50px;width:700px;">
+        <div style="float:left;">
+        <div class="content" style="width:560px;">
+            <b>Simple Payroll</b><br/>
+            <label for="name">Employee Name: </label>
+            <input id="name" name="name" type="text"><br/>
+            <label for="days">Work Days: </label>
+            <input id="days" name="days" type="number"><br/>
+            <label for="rate">Daily Rate: </label>
+            <input id="rate" name="rate" type="number"><br/>
+            <label for="deduct">Deduction Amount: </label>
+            <input id="deduct" name="deduct" type="number"><br/>
+            <button style="margin-top:10px;" onclick="add()">Add</button>
+            <button style="margin-top:10px;" onclick="remove()">Delete</button><br/><br/>
+
+            <table>
+                <tr>
+                <th>No.</th>
+                <th>Employee Name</th>
+                <th>Days Worked</th>
+                <th>Daily Rate</th>
+                <th>Gross Pay</th>
+                <th>Deduction Amount</th>
+                <th>Net Pay</th>
+                </tr>
+                <tbody id="roll">
+
+                </tbody>
+            </table>
+        </div>
+        </div>
+        <div style="float:left;">
+        <button id="home" onclick="location.href='index.html'">❯❯</button>
+        </div>
+        </div>
+        
+        
+        <script>
+            var payroll=[];
+            function add(){
+                
+                var employee={
+                    "name":document.getElementById('name').value,
+                    "days":document.getElementById('days').value*1,
+                    "rate":document.getElementById('rate').value*1,
+                    "gross":function gross(){
+                        return this.days*this.rate;
+                    },
+                    "deduct":document.getElementById('deduct').value*1,
+                    "net":function net(){
+                        return this.gross()-this.deduct;
+                    }
+                };
+                payroll.push(employee);
+
+                updatetable();
+            }
+
+            function updatetable(){
+                var n,name,days,rate,gross,deduct,net;
+                var ind=payroll.length;
+                
+                n = "<td>1</td>";
+                name = "<td>"+payroll[0].name+"</td>";
+                days = "<td>"+payroll[0].days+"</td>";
+                rate = "<td>"+payroll[0].rate+"</td>";
+                gross = "<td>"+payroll[0].gross()+"</td>";
+                deduct = "<td>"+payroll[0].deduct+"</td>";
+                net = "<td>"+payroll[0].net()+"</td>";
+                document.getElementById("roll").innerHTML="<tr>"+n+name+days+rate+gross+deduct+net+"</tr>";
+                
+                for(var x=1; x<ind; x++){
+                    n = "<td>"+(x+1)+"</td>";
+                    name = "<td>"+payroll[x].name+"</td>";
+                    days = "<td>"+payroll[x].days+"</td>";
+                    rate = "<td>"+payroll[x].rate+"</td>";
+                    gross = "<td>"+payroll[x].gross()+"</td>";
+                    deduct = "<td>"+payroll[x].deduct+"</td>";
+                    net = "<td>"+payroll[x].net()+"</td>";
+                    document.getElementById("roll").innerHTML+="<tr>"+n+name+days+rate+gross+deduct+net+"</tr>";
+                }
+            }
+            
+            function remove(){
+                var line = prompt("Delete which line?");
+                payroll.splice(line-1,1);
+                updatetable();
+            }
+
+        </script>
+        
+    </body>
+
+</html>

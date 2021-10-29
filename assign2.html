@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>Assignments</title>
+
+        <link rel="stylesheet" href="styles.css">
+        
+        
+
+    </head>
+
+    <body>
+        <div style="margin:auto;padding-top:50px;width:500px;">
+        <div style="float:left;">
+        <div class="content" style="width:350px;">
+            <b>Income Tax Calculator</b><br/>
+            <label for="income">Net taxable income: </label>
+            <input id="income" name="income" type="number" onkeyup="taxIncome()">
+            <br/>
+            <label for="tax">Tax due: </label>
+            <input id="tax" name="tax" type="number" readonly></input><br/><br/>
+        </div>
+        </div>
+        <div style="float:left;">
+        <button id="home" onclick="location.href='index.html'">❯❯</button>
+        </div>
+        </div>
+        
+        
+        <script>
+            function taxIncome(){
+                var inc = document.getElementById("income").value*1;
+                var base, percentE, fixedT, due;
+                if(inc>=250000 && inc<400000){
+                    base=250000;
+                    percentE=0.20;
+                    fixedT=0;
+                }
+                else if(inc>=400000 && inc<800000){
+                    base=400000;
+                    percentE=0.25;
+                    fixedT=30000;
+                }
+                else if(inc>=800000 && inc<2000000){
+                    base=800000;
+                    percentE=0.3;
+                    fixedT=130000;
+                }
+                else if(inc>=2000000 && inc<8000000){
+                    base=2000000;
+                    percentE=0.32;
+                    fixedT=490000;
+                }
+                else if(inc>=8000000){
+                    base=8000000;
+                    percentE=0.35;
+                    fixedT=2410000;
+                }
+                else{
+                    base=0;
+                    percentE=0;
+                    fixedT=0;
+                }
+                due=(inc-base)*percentE+fixedT;
+                document.getElementById("tax").value=due;
+                
+            }
+           
+        </script>
+        
+    </body>
+
+</html>
