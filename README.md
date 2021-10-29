@@ -1,4 +1,4 @@
 # tacodoggo.github.io
-itc assignments
+"introduction to computing" assignments
 
-this repository is for academic purposes :D
+this repository is for academic purposes only :D
